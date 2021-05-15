@@ -3,43 +3,43 @@
 <head>
 	<title>To do List</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <style>
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-        h1 {
-            padding-top: 40px;
-        }
-    </style>
-
+	<style>
+		.container {
+			max-width: 960px;
+			margin: 0 auto;
+		}
+		h1 {
+			padding-top: 40px;
+		}
+	</style>
+</head>
 <body>
 	<div id="app">
 		<div class="container">
 			<h1>Todo List</h1>
 		
-            <div v-if="!isEditing">
-                <input type="text" v-model="todo">
-                <input type="submit" value="add" @click="storeTodo" class="btn btn-success">
-            </div>
+			<div v-if="!isEditing">
+				<input type="text" v-model="todo">
+				<input type="submit" value="add" @click="storeTodo" class="btn btn-success">
+			</div>
 
-            <div v-else>
-                <input type="text" v-model="todo">
-                <input type="submit" value="update" @click="updateTodo" class="btn btn-success">
-            </div>
-            <br>
-    		<ol>
-    			<li v-for="(todo, index) in todos">
-    				{{ todo }}
+			<div v-else>
+				<input type="text" v-model="todo">
+				<input type="submit" value="update" @click="updateTodo" class="btn btn-success">
+			</div>
+			<br>
+			<ol>
+				<li v-for="(todo, index) in todos">
+					{{ todo }}
 
-                    <button @click="editTodo(index, todo)" class="btn btn-warning">Edit</button>
-                    <button @click="deleteTodo(index)" class="btn btn-danger">Delete</button>
-    			</li>
-    			
-    		</ol>
-        </div>
+					<button @click="editTodo(index, todo)" class="btn btn-warning">Edit</button>
+					<button @click="deleteTodo(index)" class="btn btn-danger">Delete</button>
+				</li>
+			
+			</ol>
+		</div>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -49,36 +49,36 @@
 			el: '#app',
 
 			data:{
-                isEditing: false,
-                selectedIndex: null,
-                todo: '',
+				isEditing: false,
+				selectedIndex: null,
+				todo: '',
 				todos: ['prepare breakfast', 'read a vuejs book']
 			},
 
-            methods:{
-                storeTodo(){
-                    this.todos.push(this.todo)
-                    this.todo = ''
-                },
+			methods:{
+				storeTodo(){
+					this.todos.push(this.todo)
+					this.todo = ''
+				},
 
-                editTodo(index, todo){
-                    this.todo = todo
-                    this.selectedIndex = index
-                    this.isEditing = true
-                },
+				editTodo(index, todo){
+					this.todo = todo
+					this.selectedIndex = index
+					this.isEditing = true
+				},
 
-                updateTodo(){
-                    this.todos.splice(this.selectedIndex, 1, this.todo)
-                    this.todo = ''
-                    this.isEditing = false
-                },
+				updateTodo(){
+					this.todos.splice(this.selectedIndex, 1, this.todo)
+					this.todo = ''
+					this.isEditing = false
+				},
 
-                deleteTodo(index){
-                    this.todos.splice(index,1)
-                }
-            }
+				deleteTodo(index){
+					this.todos.splice(index,1)
+				}
+			}
 		})
 	</script>
-</head>
+
 </body>
 </html>
